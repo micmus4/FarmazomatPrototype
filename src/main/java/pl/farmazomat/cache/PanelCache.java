@@ -2,6 +2,7 @@ package pl.farmazomat.cache;
 
 import com.google.common.collect.Maps;
 import javafx.stage.Stage;
+import pl.farmazomat.view.Panel;
 
 import java.util.Map;
 
@@ -9,7 +10,7 @@ public final class PanelCache
 {
     private static final PanelCache INSTANCE = new PanelCache();
 
-    private final Map< Class< ? >, Stage > cache;
+    private final Map< Class< ? >, Panel > cache;
 
     private PanelCache()
     {
@@ -21,12 +22,12 @@ public final class PanelCache
         return INSTANCE;
     }
 
-    public void put( final Class< ? > aControllerClass, final Stage aPanel )
+    public void put( final Class< ? > aControllerClass, final Panel aPanel )
     {
         cache.put( aControllerClass, aPanel );
     }
 
-    public Stage get( final Class< ? > aControllerClass )
+    public Panel get( final Class< ? > aControllerClass )
     {
         return cache.get( aControllerClass );
     }

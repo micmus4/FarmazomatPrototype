@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.farmazomat.Launcher;
+import pl.farmazomat.view.Panel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +25,7 @@ public class PanelCreator
 {
     private static final Logger LOGGER = LogManager.getLogger( PanelCreator.class );
 
-    public static Optional< Stage > createPanel(final Stage aStage, final String aFXMLFilePath, final String aPanelName,
+    public static Optional< Panel > createPanel( final Panel aPanel, final String aFXMLFilePath, final String aPanelName,
                                                 final boolean aResizable, final boolean aExitOnException )
     {
         LOGGER.info( "Creating new panel..." );
@@ -47,18 +48,18 @@ public class PanelCreator
             return Optional.empty();
         }
 
-        aStage.setTitle( aPanelName );
-        aStage.setResizable( aResizable );
+        aPanel.setTitle( aPanelName );
+        aPanel.setResizable( aResizable );
 
         Scene loginScene = new Scene( root );
-        aStage.setScene( loginScene );
+        aPanel.setScene( loginScene );
 
-        return Optional.of( aStage );
+        return Optional.of( aPanel );
     }
 
-    public static Optional< Stage > createPanel( final String aFXMLFilePath, final String aPanelName,
-                                                 final boolean aResizable, final boolean aExitOnException )
+    public static Optional<Panel> createPanel(final String aFXMLFilePath, final String aPanelName,
+                                              final boolean aResizable, final boolean aExitOnException )
     {
-        return createPanel( new Stage(), aFXMLFilePath, aPanelName, aResizable, aExitOnException );
+        return createPanel( new Panel(), aFXMLFilePath, aPanelName, aResizable, aExitOnException );
     }
 }

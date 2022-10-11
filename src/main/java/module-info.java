@@ -9,4 +9,5 @@ module Farmazomat
 
     opens pl.farmazomat;
     opens pl.farmazomat.view;
+    opens pl.farmazomat.model;
 }

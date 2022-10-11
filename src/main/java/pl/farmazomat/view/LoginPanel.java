@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lombok.NoArgsConstructor;
 import pl.farmazomat.cache.PanelCache;
+import pl.farmazomat.model.Customer;
 import pl.farmazomat.model.CustomerAccount;
 import pl.farmazomat.util.PanelCreator;
 
@@ -37,7 +38,7 @@ public class LoginPanel
     {
         // for prototype purpose, we create one account to test login.
         accounts = Maps.newHashMap();
-        accounts.put( "123456789", new CustomerAccount("123456789", "1234", 500D, null) );
+        accounts.put( "123456789", new CustomerAccount("123456789", "1234", 500D, new Customer()) );
     }
 
     public void onLogin()
@@ -48,14 +49,17 @@ public class LoginPanel
         if( accounts.containsKey( cardNumberFromInput ) &&
                 accounts.get( cardNumberFromInput ).getPin().equals( pinFromInput ) )
         {
-            final Optional< Stage > mainPanel = PanelCreator.createPanel( "/mainPanel.fxml",
+            final Optional< Panel > mainPanel = PanelCreator.createPanel( "/mainPanel.fxml",
                     "Bank", false, false );
+
 
             mainPanel.ifPresent( panel ->
             {
-                panel.show();
                 panelCache.put( MainPanel.class, panel );
                 panelCache.get( LoginPanel.class ).hide();
+
+                panel.show();
+                panel.setPanelParameter( "account", accounts.get( cardNumberFromInput ) );
             });
         }
         else

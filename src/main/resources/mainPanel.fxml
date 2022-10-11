@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="pl.farmazomat.view.MainPanel"
             prefHeight="400.0" prefWidth="600.0">
+    <left>
+        <GridPane hgap="80" vgap="20">
+            <padding>
+                <Insets left="20" top="100"/>
+            </padding>
+            <Button text="Pay out" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Button text="Pay in" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#onPayInButtonClicked"/>
 
-</AnchorPane>
+            <TextField fx:id="moneyToPayInField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        </GridPane>
+    </left>
+    <right>
+        <GridPane hgap="80" vgap="20">
+            <padding>
+                <Insets right="20" top="100"/>
+            </padding>
+            <Button fx:id="inspectMoneyButton" text="Inspect Money" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                        onAction="#onInspectMoneyButtonClicked"/>
+            <Button text="Take Loan" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        </GridPane>
+    </right>
+
+</BorderPane>

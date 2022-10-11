@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import pl.farmazomat.cache.PanelCache;
 import pl.farmazomat.util.PanelCreator;
 import pl.farmazomat.view.LoginPanel;
+import pl.farmazomat.view.Panel;
 
 import java.util.Optional;
 
@@ -28,12 +29,12 @@ public class Launcher extends Application
     @Override
     public void start( final Stage aStage )
     {
-        showLoginPanel( aStage );
+        showLoginPanel();
     }
 
-    private void showLoginPanel( final Stage aStage )
+    private void showLoginPanel( )
     {
-        final Optional< Stage > loginPanel = PanelCreator.createPanel( aStage, "/loginPanel.fxml",
+        final Optional<Panel> loginPanel = PanelCreator.createPanel( "/loginPanel.fxml",
                 "Enter PIN", false, true );
 
         loginPanel.ifPresent( panel ->
